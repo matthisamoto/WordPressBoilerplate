@@ -1,0 +1,347 @@
+/* ==========================================================================
+	Variables + Mixins
+============================================================================= */
+
+	$root-font-size: 16;
+
+	// Colors
+
+	$white:     #FFF;
+	$black:     #000;
+
+	// Icon Sprite
+
+	$sprite-width: 300;
+	$sprite-height: 200;
+
+	// Constants
+
+	$wpadminbar-ht-mobile:  46px;
+	$wpadminbar-ht-desktop: 32px;
+
+	// $header-ht-mobile:  0px;
+	// $header-ht-desktop: 0px;
+
+	$ipad-ht: 1024px;
+	$ipad-wt: 768px;
+
+	$golden-ratio: 1.618;
+
+
+	/*	Grid Breakpoints
+	============================================================================= */
+
+	$screen: 'only screen';
+
+	$sm: 500;
+	$md: 740;
+	$lg: 980;
+	$xl: 1220;
+
+	$min-sm: $screen ($sm * 1px);
+	$min-md: $screen ($md * 1px);
+	$min-lg: $screen ($lg * 1px);
+	$min-xl: $screen ($xl * 1px);
+
+	$max-sm: $screen 0px ($sm - 1px);
+	$max-md: $screen 0px ($md - 1px);
+	$max-lg: $screen 0px ($lg - 1px);
+	$max-xl: $screen 0px ($xl - 1px);
+
+	$sm-md: $screen ($sm * 1px) ($md - 1px);
+	$sm-lg: $screen ($sm * 1px) ($lg - 1px);
+	$sm-xl: $screen ($sm * 1px) ($xl - 1px);
+
+	$md-lg: $screen ($md * 1px) ($lg - 1px);
+	$md-xl: $screen ($md * 1px) ($xl - 1px);
+
+	$lg-xl: $screen ($lg * 1px) ($xl - 1px);
+
+	$tablet-ht: height 900px;
+
+
+	/*	Mixins
+	============================================================================= */
+
+	@mixin font-size($sizeValue: $root-font-size) {
+	  font-size: $sizeValue + px;
+	  font-size: ($sizeValue / $root-font-size) + rem;
+	}
+
+	@mixin size($width: 0, $height: $width) {
+		width: $width + px;
+		height: $height + px;
+	}
+
+
+	@mixin transition($duration: 0.25s, $timing: linear, $delay: 0) {
+		transition:
+			background-color $duration $timing,
+			border-color $duration $timing,
+			box-shadow $duration $timing,
+			color $duration $timing,
+			opacity $duration $timing;
+	}
+
+	@mixin transition-link($duration: 0.25s, $timing: linear, $delay: 0) {
+		&,
+		&:link,
+		&:visited,
+		&:hover,
+		&:active,
+		&:focus {
+			@include transition($duration, $timing, $delay)
+		}
+	}
+
+	@mixin icon-sprite($left: 0, $top: 0) {
+		background: url(../images/icons.png) no-repeat $left $top;
+
+		.svg & {
+			background-image: url(../images/icons.svg);
+		}
+	}
+
+	@mixin scale_sprite($percent: 1, $imageOffsetX: 0, $imageOffsetY: 0) {
+		background-size: floor($sprite_width * $percent) floor($sprite_height * $percent);
+		background-position: floor($imageOffsetX * $percent) floor($imageOffsetY * $percent);
+	}
+
+	@mixin scale_image($percent: 1, $imageOffsetX: 0, $imageOffsetY: 0, $imageWidth: 0, $imageHeight: 0, $textIndent: false) {
+		width: floor($imageWidth * $percent);
+		height: floor($imageHeight * $percent);
+		background-size: floor($imageWidth * $percent) floor($imageHeight * $percent);
+		background-position: floor($imageOffsetX * $percent) floor($imageOffsetY * $percent);
+		@if $textIndent {
+			@include text-indent(floor($imageHeight * $percent));
+		}
+	}
+
+	@mixin text-indent($height: 0) {
+		line-height: $height;
+		overflow: hidden;
+		text-indent: 100%;
+	}
+
+	@mixin clearfix {
+		&:after {
+			content: "";
+			display: table;
+			clear: both;
+		}
+	}
+
+	@mixin font-smoothing {
+		-webkit-font-smoothing: antialiased;
+	}
+
+	@mixin show($number:1) {
+		width: (floor(100000/$number)/1000)+%;
+	}
+
+	@mixin text-shadow($h:1, $v:1, $blur: 1, $color: #000) {
+		text-shadow: ($h * 1px) ($v * 1px) ($blur * 1px) $color;
+	}
+
+	@mixin fringe($direction: "up") {
+		position: relative;
+
+		&:before {
+			width: 100%;
+			height: 12px;
+
+			position: absolute;
+			z-index: 1;
+
+			background: url(../images/fringe-#{$direction}.png) repeat-x center top;
+			content: "";
+			display: block;
+
+			.svg & {
+				background-image: url(url(../images/fringe-#{$direction}.png));
+			}
+		}
+	}
+
+	@mixin fringe-top {
+		@include fringe("up");
+	}
+
+	@mixin fringe-bottom {
+		@include fringe("down");
+	}
+
+	/*
+
+
+	.transition_link(@duration:0.25s, @timing:linear, @delay:0) {
+		&,
+		&:link,
+		&:visited,
+		&:hover,
+		&:active,
+		&:focus {
+			.transition(@duration, @timing, @delay)
+		}
+	}
+
+	.size(@width:0, @height:@width) {
+		width: ~"@{width}px";
+		height: ~"@{height}px";
+	}
+
+	.line_height(@lineHeight, @fontSize:@lineHeight) {
+		line-height: (@lineHeight / @fontSize);
+	}
+
+	.rgba_background(@base, @alpha) {
+		background-color: rgba(red(@base), green(@base), blue(@base), @alpha);
+	}
+
+	.rgba_text(@base, @alpha) {
+		color: rgba(red(@base), green(@base), blue(@base), @alpha);
+	}
+
+	// 1. Autoprefixer does not prefix correctly
+	// 2. IE 10/11 uses a non-standard
+
+	.columns(@count, @gap) {
+		column-count: @count;
+		column-gap: @gap;
+
+		& > * {
+			-webkit-column-break-inside: avoid; // 1
+			column-break-inside: avoid;
+			break-inside: avoid; // 2
+		}
+	}
+
+	.icon_sprite(@left:0, @top:0) {
+		background: url(../images/icons.png) no-repeat @left @top;
+		.svg & {
+			background-image: url(../images/icons.svg);
+		}
+	}
+
+	.scale_sprite(@percent:1, @imageOffsetX:0, @imageOffsetY:0) {
+		background-size: floor(@sprite_width * @percent) floor(@sprite_height * @percent);
+		background-position: floor(@imageOffsetX * @percent) floor(@imageOffsetY * @percent);
+	}
+
+	.icon_indent() {
+		overflow: hidden;
+		text-indent: 200%;
+		white-space: nowrap;
+	}
+
+	.cover() {
+		height: 100%;
+		width: 100%;
+
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+	}
+
+	.cover_image() {
+		position: relative;
+
+		z-index: 1;
+
+		img {
+			width: auto;
+			height: auto;
+
+			position: absolute;
+			top: 50%;
+			left: 50%;
+
+			min-width: 100% !important;
+			min-height: 100% !important;
+			transform: translate(-50%, -50%);
+			z-index: 0;
+		}
+	}
+
+	.center() {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+
+		transform: translate(-50%, -50%);
+	}
+
+	.center_vertical() {
+		position: absolute;
+		top: 50%;
+
+		transform: translateY(-50%);
+	}
+
+	.absolute_center_parent() {
+		position: relative;
+	}
+
+	.absolute_center() {
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+
+		margin: auto;
+	}
+
+	.text_indent(@height: 0) {
+		display: block;
+		line-height: @height;
+		overflow: hidden;
+		text-indent: 100%;
+	}
+
+	.ellipsis() {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	// 1. Filter for <= IE 9, does not work on pseudo elements
+
+	.gradient_vertical(@startColor: black, @endColor: white) {
+		background-color: @startColor;
+		background: linear-gradient(to bottom, @startColor, @endColor);
+
+		@ieStartColor: argb(@startColor);
+		@ieEndColor:   argb(@endColor);
+
+		filter: ~"progid:DXImageTransform.Microsoft.gradient(startColorstr='@{ieStartColor}', endColorstr='@{ieEndColor}', GradientType=0)"; // 1
+	}
+
+	// 1. Filter for <= IE 9, does not work on pseudo elements
+
+	.gradient_horizontal(@startColor: black, @endColor: white) {
+		background-color: @startColor;
+		background: linear-gradient(to right, @startColor, @endColor);
+
+		@ieStartColor: argb(@startColor);
+		@ieEndColor:   argb(@endColor);
+
+		filter: ~"progid:DXImageTransform.Microsoft.gradient(startColorstr='@{ieStartColor}', endColorstr='@{ieEndColor}', GradientType=1)"; // 1
+	}
+
+	.rgba_raw(@base, @alpha) {
+		@return: rgba(red(@base), green(@base), blue(@base), @alpha);
+	}
+
+	.font_smoothing {
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	}
+
+	.killFlicker {
+		-webkit-font-smoothing: auto;
+		transform: translateZ(0);
+	}
+	*/

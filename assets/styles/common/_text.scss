@@ -1,0 +1,279 @@
+/* ==========================================================================
+	Text Styles
+============================================================================= */
+
+	/*	Font Mixins
+	============================================================================= */
+
+	/* 
+	@mixin helvetica($font-style: normal, $font-weight: 400) {
+		font-family: 'Helvetica Neue', Helvetica, Arial, Verdana, sans-serif;
+		font-style: $font-style;
+		font-weight: $font-weight;
+		text-transform: uppercase;
+	}
+
+	@mixin helvetica-italic {
+		@include helvetica(italic, 400);
+	}
+
+	@mixin helvetica-black {
+		@include helvetica(normal, 800);
+	}
+
+	*/
+
+
+	/*	Text Style Mixins
+	============================================================================= */
+
+	@mixin heading-1 {
+		
+	}
+
+	.heading-1 {
+		@include heading-1;
+	}
+
+	@mixin heading-2 {
+
+	}
+
+	.heading-2 {
+		@include heading-2;
+	}
+
+	@mixin heading-3 {
+
+	}
+
+	.heading-3 {
+		@include heading-3;
+	}
+
+	@mixin heading-4 {
+
+	}
+
+	.heading-4 {
+		@include heading-4;
+	}
+
+	@mixin heading-5 {
+
+	}
+
+	.heading-5 {
+		@include heading-5;
+	}
+
+	@mixin heading-6 {
+
+	}
+
+	.heading-6 {
+		@include heading-6;
+	}
+
+	@mixin navigation-link {
+
+	}
+
+	@mixin blockquote {
+		
+	}
+
+	@mixin link {
+
+		&:hover {
+
+		}
+	}
+
+	@mixin button {
+		
+		&:hover {
+
+		}
+	}
+	
+
+	/*	Text Elements
+	============================================================================= */
+
+	a {
+		@include transition-link;
+
+		text-decoration: none;
+	}
+
+	// WYSIWYG text styles
+
+	.wysiwyg {
+
+		p, ul li {
+			
+		}
+
+		p, ul {
+
+		}
+
+		a {
+
+			&:hover {
+
+			}
+		}
+
+		hr {
+			
+		}
+
+		em {
+			
+		}
+
+		strong {
+			
+		}
+
+		p, h2, h3, h4, h5, h6 {
+			
+			&:first-child {
+				margin-top: 0;
+			}
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+
+		h1 {
+			@include heading-1;
+		}
+
+		h2 {
+			@include heading-2;
+		}
+
+		h3 {
+			@include heading-3;
+		}
+
+		h4 {
+			@include heading-4;
+		}
+
+		h5 {
+			@include heading-5;
+		}
+
+		h6 {
+			@include heading-6;
+		}
+
+		blockquote {
+
+			&,
+			p {
+				@include blockquote;
+			}
+
+			p {
+				margin: 0;
+			}
+		}
+
+		ol,
+		ul {
+			li {
+				margin-bottom: 10px;
+			}
+
+			&:not(.list-style-none)	{
+				
+				li {
+					
+				}	
+			}
+			
+
+			&.list-style-none {
+				padding: 0;
+
+				li {
+					margin: 0;
+				}
+			}
+		}
+
+		ol {
+			counter-reset: li;
+
+			> li {
+				display: block;
+				list-style: none;
+
+				&:before {
+					position: absolute;
+					top: 0;
+					right: 100%;
+
+					content: counter(li) ". ";
+					counter-increment: li;
+				}
+			}
+
+			&[type="a"] {
+				> li {
+					&:before {
+						content: counter(li, lower-alpha) ". ";
+					}
+				}
+			}
+
+			&[type="A"] {
+				> li {
+					&:before {
+						content: counter(li, upper-alpha) ". ";
+					}
+				}
+			}
+
+			&[type="i"] {
+				> li {
+					&:before {
+						content: counter(li, lower-roman) ". ";
+					}
+				}
+			}
+
+			&[type="I"] {
+				> li {
+					&:before {
+						content: counter(li, upper-roman) ". ";
+					}
+				}
+			}
+		}
+
+		ul {
+			list-style: none;
+			padding-left: 30px;
+
+			&:not(.list-style-none) {
+
+				li:before {
+					content: "";
+					display: block;
+					float: left;
+					margin: 8px 0 0 -30px;
+					vertical-align: middle;
+				}
+			}
+		}
+
+	} // .wysiwyg
+
+	

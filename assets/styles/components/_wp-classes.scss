@@ -1,0 +1,47 @@
+/* ==========================================================================
+	WordPress Classes
+============================================================================= */
+
+	.alignnone {
+		margin-left: 0;
+		margin-right: 0;
+		max-width: 100%;
+		height: auto;
+	}
+	
+	.aligncenter {
+		display: block;
+		margin: 20px auto;
+		height: auto;
+	}
+	
+	.alignleft {
+		float: left;
+		margin-right: 30px;
+	}
+	
+	.alignright {
+		float: right;
+		margin-left: 30px;
+	}
+
+	.alignleft,
+	.alignright {
+		margin-bottom: 30px;
+		height: auto;
+
+		p & {
+			margin-top: 15px;
+		}
+
+		@include breakpoint($max-sm) {
+			max-width: 100%;
+			display: block;
+			float: none !important;
+			margin: 30px auto;
+
+			p & {
+				margin-top: 30px;
+			}
+		}
+	}

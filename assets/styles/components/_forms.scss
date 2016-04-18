@@ -1,0 +1,137 @@
+/* ==========================================================================
+	Forms
+============================================================================= */
+
+	// Search form
+	.search-form {
+		@extend .form-inline;
+	}
+	.search-form label {
+		font-weight: normal;
+		@extend .form-group;
+	}
+	.search-form .search-field {
+		@extend .form-control;
+	}
+	.search-form .search-submit {
+		@extend .btn;
+		@extend .btn-default;
+	}
+
+
+/* ==========================================================================
+	Forms
+============================================================================= */
+	
+	::-webkit-input-placeholder {
+		color: #ccc;
+	}
+
+	
+	::-moz-placeholder {
+		color: #ccc;
+	}
+	
+	:-ms-input-placeholder {
+		color: #ccc;
+	}
+	
+	:-moz-placeholder {
+		color: #ccc;
+	}
+
+	fieldset {
+		border: 0;
+		margin: 0;
+		padding: 0;
+	}
+
+	input,
+	textarea {
+		border: none;
+		border-radius: 0;
+		padding: 0;
+
+		-webkit-appearance: none;
+	}
+
+	input::-ms-clear {
+		width: 0;
+		height: 0;
+	}
+
+	input[type=text],
+	input[type=email],
+	input[type=tel],
+	input[type=url],
+	input[type=number],
+	input[type=date],
+	input[type=search],
+	textarea {
+		@include font-size(20);
+		@include transition(0.25s, ease);
+
+		background-color: $white;
+		border: 1px solid transparentize($black, 0.75);
+		letter-spacing: -0.01em;
+		padding: 12px;
+		outline: none;
+		vertical-align: middle;
+
+		&:focus {
+			// border-color: ;
+		}
+	}
+
+	textarea {
+		line-height: 1.5;
+		resize: vertical;
+	}
+
+	input[type="submit"],
+	button[type="submit"] {
+		@include button;
+	}
+
+	/*
+		Ninja Forms stuff
+	
+	label,
+	.ninja-forms-cont .label-above label {
+		@include verlag-bold;
+		@include font-size(18);
+
+		color: $gray-dark;
+		display: inline-block;
+		letter-spacing: -0.01em;
+		margin-bottom: 12px;
+	}
+
+	::-webkit-input-placeholder,
+	::-moz-placeholder,
+	:-ms-input-placeholder {}
+
+
+	.ninja-forms-required-items,
+	.ninja-forms-response-msg,
+	.ninja-forms-error-msg,
+	.ninja-forms-field-error {
+		@include knockout;
+		@include font-size(24);
+
+		letter-spacing: -0.01em;
+		margin-bottom: 24px;
+	}
+
+	.ninja-forms-field-error p {
+		@include knockout;
+		@include font-size(18);
+
+		color: $red;
+	}
+
+	.ninja-forms-response-msg,
+	.ninja-forms-error-msg {
+		color: $red;
+	}
+	*/

@@ -1,0 +1,41 @@
+/* ==========================================================================
+	Search
+============================================================================= */
+
+	/* Search Module
+	============================================================================= */
+
+	.search-module {
+
+	}
+
+	.search-fieldset {
+		position: relative;
+
+		display: block;
+	}
+
+	.search-input {
+		width: 100%;
+
+		display: block;
+	}
+
+	.search-submit {
+		position: absolute;
+		top: 0;
+		right: 0;
+		z-index: 1;
+	}
+
+
+	/* Search Page
+	============================================================================= */
+
+	.search-header {
+
+	}
+
+	.search-results {
+		margin-top: 40px;
+	}

@@ -1,0 +1,44 @@
+/* ==========================================================================
+	Sidebar
+============================================================================= */
+	
+	.navigation-sidebar {
+
+		.content-section-header {
+
+			&.fs-navigation-toggle-handle.fs-navigation-enabled {
+				
+			}
+		}
+
+		.content-menu-sidebar {
+
+			&.fs-navigation-toggle-nav.fs-navigation-enabled {
+				
+			}
+		}
+	}
+	
+	.menu-sidebar {
+
+		.page_item {
+
+			a {
+				
+			}
+
+			&:first-child {
+
+				a {
+
+				}
+			}
+
+			&:last-child {
+
+				a {
+
+				}
+			}
+		}
+	}

@@ -1,0 +1,39 @@
+/* ==========================================================================
+	Mobile Navigation
+============================================================================= */
+
+	// Hide at desktop view
+
+	.mobile-navigation-handle,
+	.mobile-navigation {
+
+		@include breakpoint($min-lg) {
+			display: none;
+		}
+	}
+
+	// Navigation Menu
+
+	.mobile-navigation {
+
+	}
+
+	.mobile-navigation-wrapper {
+		
+	}
+
+
+	// Menu Button
+
+	.mobile-navigation-handle {
+
+		&,
+		&.fs-navigation-overlay-handle, 
+		&.fs-navigation-push-handle,
+		&.fs-navigation-reveal-handle {
+
+			&, &.fs-navigation-enabled {
+				
+			}
+		}
+	}
